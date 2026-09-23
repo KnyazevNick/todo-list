@@ -1,15 +1,6 @@
-todo_list = []
+from classes import TodoList
 
-def add_task(tasks, task):
-    tasks.append(task)
-
-def show_tasks(tasks):
-    if tasks:
-        for task in tasks:
-            print(task)
-    else:
-        print('There are no tasks!')
-
+todo_list = TodoList()
 
 while True:
     print('===MENU===')
@@ -20,14 +11,19 @@ while True:
     if command == 'help':
         print('show_tasks - print todo-list')
         print('add_task - add task to todo-list')
+        print('remove_task - remove task from the todo-list')
         print('quit - end program')
 
     elif command == 'show_tasks':
-        show_tasks(todo_list)
+        todo_list.show_tasks()
 
     elif command == 'add_task':
         task = input('write task: ')
-        add_task(todo_list, task)
+        todo_list.add_task(task)
+        print(f'added {task}')
+
+    elif command == 'remove_task':
+        todo_list.remove_task()
 
     elif command == 'quit':
         break
