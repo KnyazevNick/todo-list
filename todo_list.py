@@ -4,12 +4,12 @@ from classes import TodoList
 
 
 
+todo_list = TodoList()
+
 path = Path(__file__).parent / 'todolist.json'
 if path.exists():
     contents = path.read_text()
-    todo_list = json.loads(contents)
-else:
-    todo_list = TodoList()
+    todo_list.tasks = json.loads(contents)
 
 while True:
     print('===MENU===')
@@ -40,5 +40,5 @@ while True:
     else:
         print(f'ERROR - unknown command:{command}')
 
-contents = json.dumps(todo_list)
+contents = json.dumps(todo_list.tasks)
 path.write_text(contents)
