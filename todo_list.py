@@ -40,5 +40,5 @@ while True:
     else:
         print(f'ERROR - unknown command:{command}')
 
-contents = json.loads(todo_list)
+contents = json.dumps(todo_list)
 path.write_text(contents)
