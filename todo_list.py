@@ -9,7 +9,9 @@ todo_list = TodoList()
 path = Path(__file__).parent / 'todolist.json'
 if path.exists():
     contents = path.read_text()
-    todo_list.tasks = json.loads(contents)
+    id_and_tasks = json.loads(contents)
+    todo_list.tasks = id_and_tasks['next_id']
+    todo_list.utid = id_and_tasks['tasks']
 
 while True:
     print('===MENU===')
@@ -40,5 +42,5 @@ while True:
     else:
         print(f'ERROR - unknown command:{command}')
 
-contents = json.dumps(todo_list.tasks)
+contents = json.dumps({'tasks' : todo_list.tasks, 'next_id' : todo_list.utid})
 path.write_text(contents)
