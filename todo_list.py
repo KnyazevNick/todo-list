@@ -10,8 +10,13 @@ path = Path(__file__).parent / 'todolist.json'
 if path.exists():
     contents = path.read_text()
     id_and_tasks = json.loads(contents)
-    todo_list.tasks = id_and_tasks['next_id']
-    todo_list.utid = id_and_tasks['tasks']
+    todo_list.tasks = id_and_tasks['tasks']
+    todo_list.utid = id_and_tasks['next_id']
+
+def save_json():
+    contents = json.dumps({'tasks' : todo_list.tasks, 'next_id' : todo_list.utid})
+    path.write_text(contents)
+
 
 while True:
     print('===MENU===')
@@ -32,15 +37,16 @@ while True:
         task = input('write task: ')
         todo_list.add_task(task)
         print(f'added {task}')
+        save_json()
 
     elif command == 'remove_task':
         todo_list.remove_task()
+        save_json()
 
     elif command == 'quit':
         break
 
     else:
-        print(f'ERROR - unknown command:{command}')
+        print(f'ERROR - unknown command: {command}')
 
-contents = json.dumps({'tasks' : todo_list.tasks, 'next_id' : todo_list.utid})
-path.write_text(contents)
+save_json()

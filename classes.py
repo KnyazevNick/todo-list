@@ -15,10 +15,39 @@ class TodoList():
         self.utid += 1
         self.tasks.append(task_info)
 
+    def check_id(self, utid):
+        for task_info in self.tasks:
+            info = task_info
+            for id in task_info.values():
+                if str(id) == utid:
+                    return info
+        return None
 
     def remove_task(self):
-        pass
 
+        for task_info in self.tasks:
+            print(f'{task_info['id']} - {task_info['task']}')
+
+        print('\nwhich task you want to delete?')
+        answer = input('enter stop to cancel \n enter task id: ')
+        if answer.lower().strip() != 'stop':
+            info = self.check_id(answer)
+            if info:
+                answer = input(f'are you sure want to delete {info['task']} (y/n): ')
+                if answer.lower().strip() == 'y':
+                    self.tasks.remove(info)
+                    print('removed task!')
+                elif answer.lower().strip() == 'n':
+                    return None
+                else:
+                    print('please answer "y" or "n"')
+                    return None
+            else:
+                print("id wasn't found")
+                return None
+        else:
+            return None
+        
 
     def update_task(self):
         pass
@@ -27,7 +56,7 @@ class TodoList():
     def show_tasks(self):
 
         if self.tasks:
-            for task in self.tasks:
-                print(task)
+            for task_info in self.tasks:
+                print(f'id:{task_info['id']} - task: {task_info['task']}')
         else:
             print('There are no tasks!')
