@@ -68,6 +68,12 @@ class TodoList():
                 answer = input('enter stop to cancel \n enter task id: ')
                 if answer.lower().strip() != 'stop':
                     info = self.check_id(answer)
+                    if info:
+                        pass
+                    else:
+                        print('id not found')
+                        return None
+                    
                     if info['status'] == 'active':
                         answer = input(f'are you sure want to mark as completed: {info['task']} (y/n): ')
                         if answer.lower().strip() == 'y':
