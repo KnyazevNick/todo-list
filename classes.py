@@ -23,26 +23,17 @@ class TodoList():
                     return task_info
         else:
             return None
-
-    def print_list(self):
-        if self.tasks:
-
-            for task_info in self.tasks:
-                print(f'id:{task_info['id']} - {task_info['task']}')
-        else:
-            print('todo list is empty!')
-            return None
                 
 
     def remove_task(self):
-        self.print_list()
+        self.show_tasks()
 
         print('\nwhich task you want to delete?')
         answer = input('enter stop to cancel \n enter task id: ')
         if answer.lower().strip() != 'stop':
             info = self.check_id(answer)
             if info:
-                answer = input(f'are you sure want to delete {info['task']} (y/n): ')
+                answer = input(f'are you sure want to delete: {info['task']} (y/n): ')
                 if answer.lower().strip() == 'y':
                     self.tasks.remove(info)
                     print('removed task!')
@@ -58,37 +49,53 @@ class TodoList():
             return None
 
     def complete_task(self):
-        self.print_list()
-        print('\nwhich task you want to mark as completed?')
-        answer = input('enter stop to cancel \n enter task id: ')
-        if answer.lower().strip() != 'stop':
-            info = self.check_id(answer)
-            if info:
-                answer = input(f'are you sure want to mark as completed {info['task']} (y/n): ')
-                if answer.lower().strip() == 'y':
-                    info['status'] = 'completed'
-                    print('congratulations with the completed task!')
-                elif answer.lower().strip() == 'n':
-                    return None
+        if self.tasks:
+            check = False
+
+            for task_info in self.tasks:
+                if task_info['status'] == 'active':
+                    print(f'\n\nid:\n{task_info['id']}')
+                    print(f'task:\n{task_info['task']}')
+                    print(f'status:\n{task_info['status']}')
+                    check = True
+            if check:
+                print('\nwhich task you want to mark as completed?')
+                answer = input('enter stop to cancel \n enter task id: ')
+                if answer.lower().strip() != 'stop':
+                    info = self.check_id(answer)
+                    if info:
+                        answer = input(f'are you sure want to mark as completed: {info['task']} (y/n): ')
+                        if answer.lower().strip() == 'y':
+                            info['status'] = 'completed'
+                            print('congratulations with the completed task!')
+                        elif answer.lower().strip() == 'n':
+                            return None
+                        else:
+                            print('please answer "y" or "n"')
+                            return None
+                    else:
+                        print("id wasn't found")
+                        return None
                 else:
-                    print('please answer "y" or "n"')
                     return None
+
             else:
-                print("id wasn't found")
-                return None
+                print('there are no active tasks')
+
         else:
+            print('todolist is empty!')
             return None
 
 
     def update_task(self):
-        self.print_list()
+        self.show_tasks()
 
         print('\nwhich task you want to update?')
         answer = input('enter stop to cancel \n enter task id: ')
         if answer.lower().strip() != 'stop':
             info = self.check_id(answer)
             if info:
-                answer = input(f'are you sure want to rewrite {info['task']} (y/n): ')
+                answer = input(f'are you sure want to rewrite: {info['task']} (y/n): ')
                 if answer.lower().strip() == 'y':
                     update = input('Write new task: ')
                     info['task'] = update
@@ -107,6 +114,7 @@ class TodoList():
 
     def show_tasks(self):
         if self.tasks:
+
             for task_info in self.tasks:
                 print(f'\n\nid:\n{task_info['id']}')
                 print(f'task:\n{task_info['task']}')
