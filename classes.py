@@ -6,7 +6,7 @@ class TodoList():
 
 
     def add_task(self, task):
-        if task != '':
+        if task.strip() != '':
             task_info = {
                 'id' : self.utid,
                 'task' : task,
@@ -68,7 +68,7 @@ class TodoList():
                 answer = input('enter stop to cancel \n enter task id: ')
                 if answer.lower().strip() != 'stop':
                     info = self.check_id(answer)
-                    if info:
+                    if info['status'] == 'active':
                         answer = input(f'are you sure want to mark as completed: {info['task']} (y/n): ')
                         if answer.lower().strip() == 'y':
                             info['status'] = 'completed'
@@ -104,7 +104,7 @@ class TodoList():
                 if answer.lower().strip() == 'y':
 
                     update = input('Write new task: ')
-                    if update != '':
+                    if update.strip() != '':
                         info['task'] = update
                         print('updated task!')
                     else:
