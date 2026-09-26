@@ -1,20 +1,24 @@
 class TodoList():
 
-    def __init__(self, tasks= []):
+    def __init__(self):
         self.tasks = []
         self.utid = 1000
 
 
     def add_task(self, task):
+        if task != '':
+            task_info = {
+                'id' : self.utid,
+                'task' : task,
+                'status' : 'active',
+            }
 
-        task_info = {
-            'id' : self.utid,
-            'task' : task,
-            'status' : 'active',
-        }
+            self.utid += 1
+            self.tasks.append(task_info)
+        else:
+            print("you can't add empty task")
+            return None
 
-        self.utid += 1
-        self.tasks.append(task_info)
 
     def check_id(self, utid):
         if self.tasks:
