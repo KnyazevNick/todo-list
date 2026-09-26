@@ -16,12 +16,14 @@ class TodoList():
         self.tasks.append(task_info)
 
     def check_id(self, utid):
-        for task_info in self.tasks:
-            info = task_info
-            for id in task_info.values():
-                if str(id) == utid:
-                    return info
-        return None
+        if self.tasks:
+            for task_info in self.tasks:
+                info = task_info
+                for id in task_info.values():
+                    if str(id) == utid:
+                        return info
+        else:
+            return None
 
     def remove_task(self):
 
