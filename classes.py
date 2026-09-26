@@ -56,10 +56,30 @@ class TodoList():
                 return None
         else:
             return None
-        
+
 
     def update_task(self):
-        pass
+        self.print_list()
+        print('\nwhich task you want to update?')
+        answer = input('enter stop to cancel \n enter task id: ')
+        if answer.lower().strip() != 'stop':
+            info = self.check_id(answer)
+            if info:
+                answer = input(f'are you sure want to rewrite {info['task']} (y/n): ')
+                if answer.lower().strip() == 'y':
+                    update = input('Write new task: ')
+                    info['task'] = update
+                    print('updated task!')
+                elif answer.lower().strip() == 'n':
+                    return None
+                else:
+                    print('please answer "y" or "n"')
+                    return None
+            else:
+                print("id wasn't found")
+                return None
+        else:
+            return None
 
 
     def show_tasks(self):

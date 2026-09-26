@@ -27,6 +27,7 @@ while True:
     if command == 'help':
         print('show_tasks - print todo-list')
         print('add_task - add task to todo-list')
+        print('update_task - update task in the todo-list')
         print('remove_task - remove task from the todo-list')
         print('quit - end program')
 
@@ -37,6 +38,10 @@ while True:
         task = input('write task: ')
         todo_list.add_task(task)
         print(f'added {task}')
+        save_json()
+
+    elif command == 'update_task':
+        todo_list.update_task()
         save_json()
 
     elif command == 'remove_task':
