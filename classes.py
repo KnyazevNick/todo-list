@@ -84,6 +84,7 @@ class TodoList():
 
     def update_task(self):
         self.print_list()
+        
         print('\nwhich task you want to update?')
         answer = input('enter stop to cancel \n enter task id: ')
         if answer.lower().strip() != 'stop':
@@ -107,9 +108,10 @@ class TodoList():
 
 
     def show_tasks(self):
-
         if self.tasks:
             for task_info in self.tasks:
-                print(f'{task_info['task']}')
+                print(f'\n\nid:\n{task_info['id']}')
+                print(f'task:\n{task_info['task']}')
+                print(f'status:\n{task_info['status']}')
         else:
             print('There are no tasks!')
