@@ -19,10 +19,8 @@ class TodoList():
     def check_id(self, utid):
         if self.tasks:
             for task_info in self.tasks:
-                info = task_info
-                for id in task_info.values():
-                    if str(id) == utid:
-                        return info
+                if str(task_info['id']) == str(utid):
+                    return task_info
         else:
             return None
 
@@ -84,7 +82,7 @@ class TodoList():
 
     def update_task(self):
         self.print_list()
-        
+
         print('\nwhich task you want to update?')
         answer = input('enter stop to cancel \n enter task id: ')
         if answer.lower().strip() != 'stop':
