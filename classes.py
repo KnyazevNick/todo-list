@@ -101,9 +101,15 @@ class TodoList():
             if info:
                 answer = input(f'are you sure want to rewrite: {info['task']} (y/n): ')
                 if answer.lower().strip() == 'y':
+
                     update = input('Write new task: ')
-                    info['task'] = update
-                    print('updated task!')
+                    if update != '':
+                        info['task'] = update
+                        print('updated task!')
+                    else:
+                        print("if you want to delete task use command: remove_task")
+                        return None
+                    
                 elif answer.lower().strip() == 'n':
                     return None
                 else:
