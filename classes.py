@@ -68,10 +68,8 @@ class TodoList():
                 answer = input('enter stop to cancel \n enter task id: ')
                 if answer.lower().strip() != 'stop':
                     info = self.check_id(answer)
-                    if info:
-                        pass
-                    else:
-                        print('id not found')
+                    if info == None:
+                        print("id wasn't found")
                         return None
                     
                     if info['status'] == 'active':
@@ -85,7 +83,7 @@ class TodoList():
                             print('please answer "y" or "n"')
                             return None
                     else:
-                        print("id wasn't found")
+                        print("task is already completed")
                         return None
                 else:
                     return None
