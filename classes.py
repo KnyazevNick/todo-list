@@ -25,10 +25,17 @@ class TodoList():
         else:
             return None
 
-    def remove_task(self):
+    def print_list(self):
+        if self.tasks:
 
-        for task_info in self.tasks:
-            print(f'{task_info['id']} - {task_info['task']}')
+            for task_info in self.tasks:
+                print(f'id:{task_info['id']} - {task_info['task']}')
+        else:
+            print('todo list is empty!')
+                
+
+    def remove_task(self):
+        self.print_list()
 
         print('\nwhich task you want to delete?')
         answer = input('enter stop to cancel \n enter task id: ')
