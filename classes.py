@@ -15,6 +15,7 @@ class TodoList():
 
             self.utid += 1
             self.tasks.append(task_info)
+            print(f'added task: {task}')
         else:
             print("you can't add empty task")
             return None

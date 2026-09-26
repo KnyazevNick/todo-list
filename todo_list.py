@@ -38,7 +38,6 @@ while True:
     elif command == 'add_task':
         task = input('write task: ')
         todo_list.add_task(task)
-        print(f'added {task}')
         save_json()
 
     elif command == 'complete_task':
