@@ -3,3 +3,4 @@ __pycache__/
 .pytest_cache/
 .env
 db_check.py
+auth_check.py
